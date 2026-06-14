@@ -1,0 +1,227 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html,
+  body,
+  #root {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #020617;
+  }
+
+  body {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    color: #e2e8f0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  kbd {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.75rem;
+  }
+}
+
+@layer components {
+  .font-display {
+    font-family: 'Orbitron', ui-sans-serif, system-ui, sans-serif;
+    font-feature-settings: 'ss01', 'ss02';
+  }
+
+  .glass-panel {
+    background: linear-gradient(
+      135deg,
+      rgba(15, 23, 42, 0.85) 0%,
+      rgba(30, 41, 59, 0.75) 50%,
+      rgba(15, 23, 42, 0.85) 100%
+    );
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+  }
+
+  .neon-button {
+    position: relative;
+    background: linear-gradient(135deg, #22d3ee 0%, #0891b2 50%, #22d3ee 100%);
+    background-size: 200% 200%;
+    color: #0f172a;
+    border: 1px solid rgba(34, 211, 238, 0.5);
+    box-shadow:
+      0 0 20px rgba(34, 211, 238, 0.4),
+      0 0 40px rgba(34, 211, 238, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    animation: neonGlow 3s ease-in-out infinite;
+    overflow: hidden;
+  }
+
+  .neon-button:hover {
+    background-position: 100% 100%;
+    transform: translateY(-1px);
+    box-shadow:
+      0 0 30px rgba(34, 211, 238, 0.6),
+      0 0 60px rgba(34, 211, 238, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+
+  .neon-button:active {
+    transform: translateY(0);
+  }
+
+  .neon-button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      120deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.3) 50%,
+      transparent 70%
+    );
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+  }
+
+  .neon-button:hover::before {
+    transform: translateX(100%);
+  }
+
+  .neon-title {
+    position: relative;
+  }
+
+  .neon-title span {
+    text-shadow:
+      0 0 10px rgba(34, 211, 238, 0.8),
+      0 0 20px rgba(34, 211, 238, 0.6),
+      0 0 40px rgba(34, 211, 238, 0.4),
+      0 0 80px rgba(34, 211, 238, 0.2);
+    animation: titleGlow 2.5s ease-in-out infinite;
+  }
+
+  .heart-beat {
+    animation: heartBeat 1.2s ease-in-out infinite;
+  }
+
+  .touch-btn {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    user-select: none;
+    border: 2px solid;
+    font-size: 0;
+  }
+
+  .touch-btn:focus {
+    outline: none;
+  }
+}
+
+@layer utilities {
+  .animate-fadeIn {
+    animation: fadeIn 0.3s ease-out forwards;
+  }
+
+  .animate-scaleIn {
+    animation: scaleIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+}
+
+@keyframes neonGlow {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes titleGlow {
+  0%,
+  100% {
+    filter: brightness(1) drop-shadow(0 0 8px rgba(34, 211, 238, 0.6));
+  }
+  50% {
+    filter: brightness(1.1) drop-shadow(0 0 16px rgba(34, 211, 238, 0.9));
+  }
+}
+
+@keyframes heartBeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  14% {
+    transform: scale(1.15);
+  }
+  28% {
+    transform: scale(1);
+  }
+  42% {
+    transform: scale(1.15);
+  }
+  70% {
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    box-shadow:
+      0 0 20px rgba(34, 211, 238, 0.4),
+      0 0 40px rgba(34, 211, 238, 0.2);
+  }
+  50% {
+    box-shadow:
+      0 0 30px rgba(34, 211, 238, 0.6),
+      0 0 60px rgba(34, 211, 238, 0.4);
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
